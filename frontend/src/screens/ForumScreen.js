@@ -18,7 +18,7 @@ const ForumScreen = () => {
   const [searchPost, setSearchPost] = useState([]);
 
   const getPosts = async () => {
-    const res = await fetch("/api/forum/");
+    const res = await fetch("https://shopon-c3o1.onrender.com/api/forum/");
     let data = await res.json();
     setPost(data);
   };
