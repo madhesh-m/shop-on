@@ -48,7 +48,7 @@ const ForumScreen = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
-      const res = await fetch(`/api/forum/posts/t/${search}`);
+      const res = await fetch(`https://shopon-c3o1.onrender.com/api/forum/posts/t/${search}`);
       let data = await res.json();
       setSearchPost(data);
     } catch (err) {
