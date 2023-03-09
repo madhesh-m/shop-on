@@ -51,7 +51,7 @@ const PaymentScreen = ({ history }) => {
               label="Cash on Delivery"
               id="CashOnDelivery"
               name="paymentMethod"
-              value="Cash On Delivery"
+              value="CashOnDelivery"
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
           </Col>

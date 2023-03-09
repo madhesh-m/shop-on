@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Message from "../components/Message";
 import axios from "axios";
@@ -17,7 +17,7 @@ const PostScreen = () => {
   const [newComment, setNewComment] = useState("");
   useEffect(() => {
     const getPost = async () => {
-      axios.get(`http://localhost:5000/api/forum/posts/${id}`).then((res) => {
+      axios.get(`/api/forum/posts/${id}`).then((res) => {
         setPost(res.data);
       });
     };
