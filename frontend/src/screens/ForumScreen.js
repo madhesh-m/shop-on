@@ -30,7 +30,7 @@ const ForumScreen = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/forum/posts", {
+      const response = await axios.post("https://shopon-c3o1.onrender.com/api/forum/posts", {
         author,
         title,
         description,

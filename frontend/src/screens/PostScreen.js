@@ -17,7 +17,7 @@ const PostScreen = () => {
   const [newComment, setNewComment] = useState("");
   useEffect(() => {
     const getPost = async () => {
-      axios.get(`/api/forum/posts/${id}`).then((res) => {
+      axios.get(`https://shopon-c3o1.onrender.com/api/forum/posts/${id}`).then((res) => {
         setPost(res.data);
       });
     };
@@ -27,7 +27,7 @@ const PostScreen = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await axios.post(`/api/forum/posts/${id}/comments`, {
+      const res = await axios.post(`https://shopon-c3o1.onrender.com/api/forum/posts/${id}/comments`, {
         author,
         content: newComment,
       });

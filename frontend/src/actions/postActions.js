@@ -50,7 +50,7 @@ export const fetchPost = (postId) => {
     dispatch(fetchPostRequest());
 
     try {
-      const response = await axios.get(`/api/forum/${postId}`);
+      const response = await axios.get(`https://shopon-c3o1.onrender.com/api/forum/${postId}`);
       const data = await response.json();
       dispatch(fetchPostSuccess(data));
     } catch (error) {
@@ -62,7 +62,7 @@ export const fetchPost = (postId) => {
 export const addCommentToPost = (postId, comment) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`/api/forum/posts/${postId}/comments`, {
+      const response = await fetch(`https://shopon-c3o1.onrender.com/api/forum/posts/${postId}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
