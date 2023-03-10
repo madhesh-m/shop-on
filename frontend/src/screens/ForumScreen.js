@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Message from "../components/Message";
 import { Link } from "react-router-dom";
 
 const ForumScreen = () => {
+  // const userLogin = useSelector((state) => state.userLogin);
+  // const { userInfo } = userLogin;
+  // const author = userInfo.name;
+
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const author = userInfo.name;
+  let author = "";
+  if (userLogin && userLogin.userInfo) {
+    author = userLogin.userInfo.name;
+  }
 
   const [post, setPost] = useState([]);
   const [search, setSearch] = useState("");
@@ -30,11 +36,14 @@ const ForumScreen = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://shopon-c3o1.onrender.com/api/forum/posts", {
-        author,
-        title,
-        description,
-      });
+      const response = await axios.post(
+        "https://shopon-c3o1.onrender.com/api/forum/posts",
+        {
+          author,
+          title,
+          description,
+        }
+      );
       setTitle("");
       setDescription("");
       setSuccess(true);
@@ -48,7 +57,9 @@ const ForumScreen = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
-      const res = await fetch(`https://shopon-c3o1.onrender.com/api/forum/posts/t/${search}`);
+      const res = await fetch(
+        `https://shopon-c3o1.onrender.com/api/forum/posts/t/${search}`
+      );
       let data = await res.json();
       setSearchPost(data);
     } catch (err) {
@@ -97,11 +108,17 @@ const ForumScreen = () => {
             </div>
           </div>
           <div class="form-group row">
+            { userLogin && userLogin.userInfo ? (
             <div class="col-sm-10">
               <button type="submit" class="btn btn-primary">
                 Post
               </button>
             </div>
+            ):(
+            <div class="col-sm-10">
+              <Message variant="danger">Login to Post</Message>
+            </div>
+            )}
           </div>
         </form>
       </div>
@@ -139,7 +156,7 @@ const ForumScreen = () => {
                         <i className="fas fa-user"></i> {item.author}
                       </div>
                       <div className="col-4">Title: {item.title}</div>
-                      <div className="col-4">
+                      <div className="col-4 ">
                         Comments:{item.comments.length}
                       </div>
                       <div className="col-4">

@@ -6,9 +6,15 @@ import Message from "../components/Message";
 import axios from "axios";
 
 const PostScreen = () => {
+  // const userLogin = useSelector((state) => state.userLogin);
+  // const { userInfo } = userLogin;
+  // const author = userInfo.name;
+
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const author = userInfo.name;
+  let author = "";
+  if (userLogin && userLogin.userInfo) {
+    author = userLogin.userInfo.name;
+  }
 
   const { id } = useParams();
   const [post, setPost] = useState();
@@ -106,9 +112,12 @@ const PostScreen = () => {
                   onChange={(e) => setNewComment(e.target.value)}
                 />
               </Form.Group>
+              { userLogin && userLogin.userInfo ? (
               <Button variant="primary" type="submit">
                 Submit
-              </Button>
+              </Button>):(
+                <Message variant="danger">Login to Comment</Message>
+              )}
             </Form>
           </div>
         </div>
